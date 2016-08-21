@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CraftingHysteresis")]
-[assembly: AssemblyCopyright("Copyright 2016")]
+[assembly: AssemblyCopyright("Copyright 2016 ZorbaTHut")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

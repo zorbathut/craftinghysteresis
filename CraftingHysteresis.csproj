@@ -76,7 +76,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
+    <Compile Include="BillUtility_Detour.cs" />
+    <Compile Include="Bill_Hysteresis.cs" />
+    <Compile Include="Bill_ProductionWithUft_Hysteresis.cs" />
+    <Compile Include="Bill_Production_Hysteresis.cs" />
+    <Compile Include="DetourInjector.cs" />
+    <Compile Include="Dialog_BillConfig_Hysteresis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
