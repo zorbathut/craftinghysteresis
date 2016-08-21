@@ -81,9 +81,6 @@ namespace CraftingHysteresis
 			return baseShouldDoNow;
 		}
 		
-		public static readonly Texture2D Plus = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
-		public static readonly Texture2D Minus = ContentFinder<Texture2D>.Get("UI/Buttons/Minus", true);
-		
 		protected override void DrawConfigInterface(Rect baseRect, Color baseColor)
 		{
 			Rect rect = new Rect(28f, 32f, 100f, 30f);
