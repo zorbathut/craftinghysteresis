@@ -2,7 +2,7 @@ rm -rf Assemblies
 
 tools/build.bat
 
-if [ ! -d "Assemblies" ]; then
+if [ ! -f "Assemblies/CraftingHysteresis.dll" ]; then
   echo FAIL
   exit
 fi
