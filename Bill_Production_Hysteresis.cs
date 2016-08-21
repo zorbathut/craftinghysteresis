@@ -7,6 +7,21 @@ namespace CraftingHysteresis
 {
 	public class Bill_Production_Hysteresis : Bill_Production
 	{
+		protected override string StatusString
+		{
+			get
+			{
+				if (paused)
+				{
+					return "Paused";
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+		
 		public bool paused = false;
 		
 		public bool pauseOnCompletion = false;
@@ -23,21 +38,6 @@ namespace CraftingHysteresis
 			
 		}
 		
-		protected override string StatusString
-		{
-			get
-			{
-				if (paused)
-				{
-					return "Paused";
-				}
-				else
-				{
-					return "";
-				}
-			}
-		}
-		
 		public override void ExposeData()
 		{
 			base.ExposeData();
@@ -49,7 +49,9 @@ namespace CraftingHysteresis
 		
 		public override bool ShouldDoNow()
 		{
-			if (pauseOnCompletion && this.recipe.WorkerCounter.CountProducts(this) >= targetCount)
+			bool baseShouldDoNow = base.ShouldDoNow();
+			
+			if (pauseOnCompletion && !suspended && !baseShouldDoNow)
 			{
 				paused = true;
 			}
@@ -64,11 +66,8 @@ namespace CraftingHysteresis
 				return false;
 			}
 			
-			return base.ShouldDoNow();
+			return baseShouldDoNow;
 		}
-		
-		public static readonly Texture2D Plus = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
-		public static readonly Texture2D Minus = ContentFinder<Texture2D>.Get("UI/Buttons/Minus", true);
 		
 		protected override void DrawConfigInterface(Rect baseRect, Color baseColor)
 		{
@@ -85,7 +84,7 @@ namespace CraftingHysteresis
 			{
 				BillRepeatModeUtility.MakeConfigFloatMenu(this);
 			}
-			if (widgetRow.ButtonIcon(Plus, null))
+			if (widgetRow.ButtonIcon((Texture2D)DetourInjector.ButtonPlus.GetValue(null), null))
 			{
 				if (this.repeatMode == BillRepeatMode.Forever)
 				{
@@ -102,7 +101,7 @@ namespace CraftingHysteresis
 				}
 				SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
 			}
-			if (widgetRow.ButtonIcon(Minus, null))
+			if (widgetRow.ButtonIcon((Texture2D)DetourInjector.ButtonMinus.GetValue(null), null))
 			{
 				if (this.repeatMode == BillRepeatMode.Forever)
 				{
