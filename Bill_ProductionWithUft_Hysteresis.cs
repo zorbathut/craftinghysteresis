@@ -61,7 +61,9 @@ namespace CraftingHysteresis
 		
 		public override bool ShouldDoNow()
 		{
-			if (pauseOnCompletion && BoundUft == null && this.recipe.WorkerCounter.CountProducts(this) >= targetCount)
+			bool baseShouldDoNow = base.ShouldDoNow();
+			
+			if (pauseOnCompletion && !suspended && !baseShouldDoNow)
 			{
 				paused = true;
 			}
@@ -76,7 +78,7 @@ namespace CraftingHysteresis
 				return false;
 			}
 			
-			return base.ShouldDoNow();
+			return baseShouldDoNow;
 		}
 		
 		public static readonly Texture2D Plus = ContentFinder<Texture2D>.Get("UI/Buttons/Plus", true);
