@@ -47,11 +47,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Community Core Library">
-      <HintPath>..\Community Core Library\Assemblies\Community Core Library.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Community Core Library\Assemblies\Community Core Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,15 +63,15 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\RimWorldWin_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.Networking">
-      <HintPath>..\..\RimWorldWin_Data\Managed\UnityEngine.Networking.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\UnityEngine.Networking.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\RimWorldWin_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
