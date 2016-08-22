@@ -37,6 +37,8 @@ namespace CraftingHysteresis
 					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
 					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
 				}
+
+				listing_Standard.End();
 			}
 			else if (bill is Bill_ProductionWithUft_Hysteresis)
 			{
@@ -57,6 +59,8 @@ namespace CraftingHysteresis
 					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
 					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
 				}
+
+				listing_Standard.End();
 			}
 		}
 	}
