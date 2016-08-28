@@ -96,7 +96,7 @@ namespace CraftingHysteresis
 			{
 				BillRepeatModeUtility.MakeConfigFloatMenu(this);
 			}
-			if (widgetRow.ButtonIcon((Texture2D)DetourInjector.ButtonPlus.GetValue(null), null))
+			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonPlus.GetValue(null), null))
 			{
 				if (this.repeatMode == BillRepeatMode.Forever)
 				{
@@ -113,7 +113,7 @@ namespace CraftingHysteresis
 				}
 				SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
 			}
-			if (widgetRow.ButtonIcon((Texture2D)DetourInjector.ButtonMinus.GetValue(null), null))
+			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonMinus.GetValue(null), null))
 			{
 				if (this.repeatMode == BillRepeatMode.Forever)
 				{

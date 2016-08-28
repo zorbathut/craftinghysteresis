@@ -45,13 +45,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Community Core Library">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Community Core Library\Assemblies\Community Core Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -77,10 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillUtility_Detour.cs" />
-    <Compile Include="Bill_Hysteresis.cs" />
     <Compile Include="Bill_ProductionWithUft_Hysteresis.cs" />
     <Compile Include="Bill_Production_Hysteresis.cs" />
-    <Compile Include="DetourInjector.cs" />
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="Detours.cs" />
     <Compile Include="Dialog_BillConfig_Hysteresis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
