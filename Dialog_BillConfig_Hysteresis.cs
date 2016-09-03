@@ -13,16 +13,63 @@ namespace CraftingHysteresis
 		{
 			this.bill = bill;
 		}
-		
-		public override void DoWindowContents(Rect inRect)
+
+        public void IntAdjusterPack(ref int val, Listing listing, int min = 0)
+        {
+            Rect rect = listing.GetRect(24f);
+            rect.width = 42f;
+            if (Widgets.ButtonText(rect, "-" + 1, true, false, true))
+            {
+                SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
+                val -= 1;
+                if (val < min)
+                {
+                    val = min;
+                }
+            }
+            rect.x += rect.width + 2f;
+            if (Widgets.ButtonText(rect, "+" + 1, true, false, true))
+            {
+                SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
+                val += 1;
+                if (val < min)
+                {
+                    val = min;
+                }
+            }
+            rect.x += rect.width + 2f;
+            if (Widgets.ButtonText(rect, "-" + 25, true, false, true))
+            {
+                SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
+                val -= 25;
+                if (val < min)
+                {
+                    val = min;
+                }
+            }
+            rect.x += rect.width + 2f;
+            if (Widgets.ButtonText(rect, "+" + 25, true, false, true))
+            {
+                SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
+                val += 25;
+                if (val < min)
+                {
+                    val = min;
+                }
+            }
+            listing.Gap(2f);
+        }
+
+        public override void DoWindowContents(Rect inRect)
 		{
 			base.DoWindowContents(inRect);
 			
 			if (bill is Bill_Production_Hysteresis)
 			{
 				Bill_Production_Hysteresis bph = bill as Bill_Production_Hysteresis;
-			
-				Rect rect2 = new Rect(0f, 400f, 180f, inRect.height - 400f);
+
+                float vpos = 420f;
+				Rect rect2 = new Rect(0f, vpos, 180f, inRect.height - vpos);
 				Listing_Standard listing_Standard = new Listing_Standard(rect2);
 				
 				listing_Standard.CheckboxLabeled("Pause on completion", ref bph.pauseOnCompletion);
@@ -36,9 +83,7 @@ namespace CraftingHysteresis
                         listing_Standard.Gap(12f);
                         listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
                         listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
-                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 1, 1);
-                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
-                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
+                        IntAdjusterPack(ref bph.unpauseThreshold, listing_Standard, 1);
                     }
                 }
 
@@ -62,9 +107,7 @@ namespace CraftingHysteresis
                         listing_Standard.Gap(12f);
                         listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
                         listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
-                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 1, 1);
-                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
-                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
+                        IntAdjusterPack(ref bph.unpauseThreshold, listing_Standard, 1);
                     }
                 }
 
