@@ -56,7 +56,7 @@ namespace CraftingHysteresis
 				paused = true;
 			}
 			
-			if (unpauseOnExhaustion && this.recipe.WorkerCounter.CountProducts(this) < unpauseThreshold)
+			if (unpauseOnExhaustion && recipe.WorkerCounter.CanCountProducts(this) && recipe.WorkerCounter.CountProducts(this) < unpauseThreshold)
 			{
 				paused = false;
 			}

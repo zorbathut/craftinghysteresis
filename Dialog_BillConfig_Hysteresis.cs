@@ -26,17 +26,21 @@ namespace CraftingHysteresis
 				Listing_Standard listing_Standard = new Listing_Standard(rect2);
 				
 				listing_Standard.CheckboxLabeled("Pause on completion", ref bph.pauseOnCompletion);
-				listing_Standard.CheckboxLabeled("Resume on low stock", ref bph.unpauseOnExhaustion);
-				
-				if (bph.unpauseOnExhaustion)
-				{
-					listing_Standard.Gap(12f);
-					listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
-					listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
-					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 1, 1);
-					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
-					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
-				}
+
+                if (bill.recipe.WorkerCounter.CanCountProducts(bill))
+                {
+                    listing_Standard.CheckboxLabeled("Resume on low stock", ref bph.unpauseOnExhaustion);
+
+                    if (bph.unpauseOnExhaustion)
+                    {
+                        listing_Standard.Gap(12f);
+                        listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
+                        listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
+                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 1, 1);
+                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
+                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
+                    }
+                }
 
 				listing_Standard.End();
 			}
@@ -48,17 +52,21 @@ namespace CraftingHysteresis
 				Listing_Standard listing_Standard = new Listing_Standard(rect2);
 				
 				listing_Standard.CheckboxLabeled("Pause on completion", ref bph.pauseOnCompletion);
-				listing_Standard.CheckboxLabeled("Resume on low stock", ref bph.unpauseOnExhaustion);
-				
-				if (bph.unpauseOnExhaustion)
-				{
-					listing_Standard.Gap(12f);
-					listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
-					listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
-					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 1, 1);
-					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
-					listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
-				}
+
+                if (bill.recipe.WorkerCounter.CanCountProducts(bill))
+                {
+                    listing_Standard.CheckboxLabeled("Resume on low stock", ref bph.unpauseOnExhaustion);
+
+                    if (bph.unpauseOnExhaustion)
+                    {
+                        listing_Standard.Gap(12f);
+                        listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
+                        listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
+                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 1, 1);
+                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 25, 1);
+                        listing_Standard.IntAdjuster(ref bph.unpauseThreshold, 250, 1);
+                    }
+                }
 
 				listing_Standard.End();
 			}
