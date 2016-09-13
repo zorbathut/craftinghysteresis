@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Language>
+    <BPH.PauseOnCompletion.label>Pause on completion</BPH.PauseOnCompletion.label>
+    <BPH.ResumeOnLowStock.label>Resume on low stock</BPH.ResumeOnLowStock.label>
+    <BPH.LowStackThreshold.label>Low stock threshold: </BPH.LowStackThreshold.label>
+</Language>
