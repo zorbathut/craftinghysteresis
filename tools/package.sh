@@ -9,7 +9,7 @@ fi
 
 rm -rf CraftingHysteresis
 mkdir CraftingHysteresis
-cp -r About Assemblies Defs CraftingHysteresis
+cp -r About Assemblies Defs Language CraftingHysteresis
 
 
 fname=CraftingHysteresis-`git describe --tags`.zip
