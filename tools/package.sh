@@ -10,6 +10,7 @@ fi
 rm -rf CraftingHysteresis
 mkdir CraftingHysteresis
 cp -r About Assemblies Defs CraftingHysteresis
+sed "s/ Dev//" -i CraftingHysteresis/About/About.xml
 
 
 fname=CraftingHysteresis-`git describe --tags`.zip
@@ -17,3 +18,5 @@ rm $fname
 zip -r -9 $fname CraftingHysteresis
 
 rm -rf CraftingHysteresis
+
+unzip $fname -d ..
