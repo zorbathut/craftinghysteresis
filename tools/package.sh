@@ -1,22 +1,30 @@
 rm -rf Assemblies
 
-tools/build.bat
+dirname=${PWD##*/}
+projname=${dirname%%_Dev}
 
-if [ ! -f "Assemblies/CraftingHysteresis.dll" ]; then
-  echo FAIL
-  exit
+if [ -f "$projname.sln" ]; then
+  rm -rf Assemblies
+  
+  tools/build.bat $projname
+
+  if [ ! -f "Assemblies/$projname.dll" ]; then
+    echo FAIL
+    exit
+  fi
 fi
 
-rm -rf CraftingHysteresis
-mkdir CraftingHysteresis
-cp -r About Assemblies Defs CraftingHysteresis
-sed "s/ Dev//" -i CraftingHysteresis/About/About.xml
+rm -rf $projname
+mkdir $projname
+cp -r About Assemblies Defs $projname
+sed "s/ Dev//" -i $projname/About/About.xml
 
 
-fname=CraftingHysteresis-`git describe --tags`.zip
+fname=$projname-`git describe --tags`.zip
 rm $fname
-zip -r -9 $fname CraftingHysteresis
+zip -r -9 $fname $projname
 
-rm -rf CraftingHysteresis
+rm -rf $projname
 
+rm -rf ../$projname
 unzip $fname -d ..
