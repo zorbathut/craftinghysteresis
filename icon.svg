@@ -16,7 +16,10 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    enable-background="new"
-   sodipodi:docname="icon.svg">
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\CraftingHysteresis_Dev\About\Preview.png"
+   inkscape:export-xdpi="50.509998"
+   inkscape:export-ydpi="50.509998">
   <defs
      id="defs4">
     <clipPath
@@ -158,8 +161,8 @@
      inkscape:guide-bbox="true"
      inkscape:window-width="1799"
      inkscape:window-height="1163"
-     inkscape:window-x="1732"
-     inkscape:window-y="246"
+     inkscape:window-x="1464"
+     inkscape:window-y="299"
      inkscape:window-maximized="0">
     <sodipodi:guide
        position="0,0"
@@ -210,7 +213,10 @@
      style="filter:url(#filter5465)">
     <g
        id="g5381"
-       clip-path="url(#clipPath5385)">
+       clip-path="url(#clipPath5385)"
+       inkscape:export-filename="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\CraftingHysteresis_Dev\About\Preview.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <rect
          clip-path="none"
          y="694.36218"
