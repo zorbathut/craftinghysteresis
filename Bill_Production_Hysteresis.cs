@@ -71,7 +71,8 @@ namespace CraftingHysteresis
 		
 		protected override void DrawConfigInterface(Rect baseRect, Color baseColor)
 		{
-			Rect rect = new Rect(28f, 32f, 100f, 30f);
+            		Event e = Event.current;  // in order to catch a shift-click
+            		Rect rect = new Rect(28f, 32f, 100f, 30f);
 			GUI.color = new Color(1f, 1f, 1f, 0.65f);
 			Widgets.Label(rect, this.RepeatInfoText);
 			GUI.color = baseColor;
@@ -84,39 +85,90 @@ namespace CraftingHysteresis
 			{
 				BillRepeatModeUtility.MakeConfigFloatMenu(this);
 			}
-			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonPlus.GetValue(null), null))
+            		int shift = 5;  // Shift Increment
+            		// Modified Minus Button with shift ability
+            		if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonPlus.GetValue(null), null))
 			{
-				if (this.repeatMode == BillRepeatMode.Forever)
+				if (e.shift)
 				{
+				    if (this.repeatMode == BillRepeatMode.Forever)
+				    {
+					this.repeatMode = BillRepeatMode.RepeatCount;
+					this.repeatCount = shift;
+				    }
+				    else if (this.repeatMode == BillRepeatMode.TargetCount)
+				    {
+					this.targetCount += this.recipe.targetCountAdjustment - 1 + shift;
+				    }
+				    else if (this.repeatMode == BillRepeatMode.RepeatCount)
+				    {
+					this.repeatCount += shift;
+				    }
+				}
+				else
+				{
+				    if (this.repeatMode == BillRepeatMode.Forever)
+				    {
 					this.repeatMode = BillRepeatMode.RepeatCount;
 					this.repeatCount = 1;
-				}
-				else if (this.repeatMode == BillRepeatMode.TargetCount)
-				{
+				    }
+				    else if (this.repeatMode == BillRepeatMode.TargetCount)
+				    {
 					this.targetCount += this.recipe.targetCountAdjustment;
-				}
-				else if (this.repeatMode == BillRepeatMode.RepeatCount)
-				{
+				    }
+				    else if (this.repeatMode == BillRepeatMode.RepeatCount)
+				    {
 					this.repeatCount++;
+				    }
 				}
 				SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
+				// Readded the tutor system
+				if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
+				{
+				    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
+				}
 			}
+			// Modified Minus Button with shift ability
 			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonMinus.GetValue(null), null))
 			{
-				if (this.repeatMode == BillRepeatMode.Forever)
+				if (e.shift)
 				{
+				    if (this.repeatMode == BillRepeatMode.Forever)
+				    {
 					this.repeatMode = BillRepeatMode.RepeatCount;
 					this.repeatCount = 1;
+				    }
+				    else if (this.repeatMode == BillRepeatMode.TargetCount)
+				    {
+					this.targetCount = Mathf.Max(0, this.targetCount - this.recipe.targetCountAdjustment + 1 - shift);
+				    }
+				    else if (this.repeatMode == BillRepeatMode.RepeatCount)
+				    {
+					this.repeatCount = Mathf.Max(0, this.repeatCount - shift);
+				    }
 				}
-				else if (this.repeatMode == BillRepeatMode.TargetCount)
+				else
 				{
+				    if (this.repeatMode == BillRepeatMode.Forever)
+				    {
+					this.repeatMode = BillRepeatMode.RepeatCount;
+					this.repeatCount = 1;
+				    }
+				    else if (this.repeatMode == BillRepeatMode.TargetCount)
+				    {
 					this.targetCount = Mathf.Max(0, this.targetCount - this.recipe.targetCountAdjustment);
-				}
-				else if (this.repeatMode == BillRepeatMode.RepeatCount)
-				{
+				    }
+				    else if (this.repeatMode == BillRepeatMode.RepeatCount)
+				    {
 					this.repeatCount = Mathf.Max(0, this.repeatCount - 1);
+				    }
 				}
+				// Readded the tutorsystem
 				SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
+				if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
+				{
+				    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
+				}
 			}
 		}
 	}
