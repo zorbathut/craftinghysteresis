@@ -69,7 +69,7 @@ namespace CraftingHysteresis
 			return baseShouldDoNow;
 		}
 		
-		protected override void DrawConfigInterface(Rect baseRect, Color baseColor)
+		protected override void DoConfigInterface(Rect baseRect, Color baseColor)
 		{
             		Event e = Event.current;  // in order to catch a shift-click
             		Rect rect = new Rect(28f, 32f, 100f, 30f);
