@@ -16,7 +16,7 @@ fi
 
 rm -rf $projname
 mkdir $projname
-cp -r About Assemblies Defs $projname
+cp -r About Assemblies Defs Languages $projname
 sed "s/ Dev//" -i $projname/About/About.xml
 
 

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language>
+    <CraftingHysteresis.PauseOnCompletion>Pause on completion</CraftingHysteresis.PauseOnCompletion>
+    <CraftingHysteresis.ResumeOnLowStock>Resume on low stock</CraftingHysteresis.ResumeOnLowStock>
+    <CraftingHysteresis.LowStockThreshold>Low stock threshold: </CraftingHysteresis.LowStockThreshold>
+    <CraftingHysteresis.Paused>Paused</CraftingHysteresis.Paused>
+</Language>

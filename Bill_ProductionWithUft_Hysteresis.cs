@@ -26,7 +26,7 @@ namespace CraftingHysteresis
 				return "BoundWorkerIs".Translate(new object[]
 				{
 					this.BoundWorker.NameStringShort
-				}) + (paused ? " - Paused" : "");
+				}) + (paused ? " - " + "CraftingHysteresis.Paused".Translate() : "");
 			}
 		}
 		

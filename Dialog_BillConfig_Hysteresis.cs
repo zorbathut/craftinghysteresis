@@ -73,16 +73,16 @@ namespace CraftingHysteresis
 				Rect rect2 = new Rect(0f, vpos, 180f, inRect.height - vpos);
 				Listing_Standard listing_Standard = new Listing_Standard(rect2);
 				
-				listing_Standard.CheckboxLabeled("Pause on completion", ref bph.pauseOnCompletion);
+				listing_Standard.CheckboxLabeled("CraftingHysteresis.PauseOnCompletion".Translate(), ref bph.pauseOnCompletion);
 
                 if (bill.recipe.WorkerCounter.CanCountProducts(bill))
                 {
-                    listing_Standard.CheckboxLabeled("Resume on low stock", ref bph.unpauseOnExhaustion);
+                    listing_Standard.CheckboxLabeled("CraftingHysteresis.ResumeOnLowStock".Translate(), ref bph.unpauseOnExhaustion);
 
                     if (bph.unpauseOnExhaustion)
                     {
                         listing_Standard.Gap(12f);
-                        listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
+                        listing_Standard.Label("CraftingHysteresis.LowStockThreshold".Translate() + bph.unpauseThreshold);
                         listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
                         IntAdjusterPack(ref bph.unpauseThreshold, listing_Standard, 1);
                     }
@@ -96,17 +96,17 @@ namespace CraftingHysteresis
 			
 				Rect rect2 = new Rect(0f, 400f, 180f, inRect.height - 400f);
 				Listing_Standard listing_Standard = new Listing_Standard(rect2);
-				
-				listing_Standard.CheckboxLabeled("Pause on completion", ref bph.pauseOnCompletion);
+
+                listing_Standard.CheckboxLabeled("CraftingHysteresis.PauseOnCompletion".Translate(), ref bph.pauseOnCompletion);
 
                 if (bill.recipe.WorkerCounter.CanCountProducts(bill))
                 {
-                    listing_Standard.CheckboxLabeled("Resume on low stock", ref bph.unpauseOnExhaustion);
+                    listing_Standard.CheckboxLabeled("CraftingHysteresis.ResumeOnLowStock".Translate(), ref bph.unpauseOnExhaustion);
 
                     if (bph.unpauseOnExhaustion)
                     {
                         listing_Standard.Gap(12f);
-                        listing_Standard.Label("Low stock threshold: " + bph.unpauseThreshold);
+                        listing_Standard.Label("CraftingHysteresis.LowStockThreshold".Translate() + bph.unpauseThreshold);
                         listing_Standard.IntSetter(ref bph.unpauseThreshold, 1, "1", 42f);
                         IntAdjusterPack(ref bph.unpauseThreshold, listing_Standard, 1);
                     }
