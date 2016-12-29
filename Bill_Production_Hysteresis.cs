@@ -100,7 +100,11 @@ namespace CraftingHysteresis
 					this.repeatCount++;
 				}
 				SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
-			}
+                if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
+                {
+                    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
+                }
+            }
 			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonMinus.GetValue(null), null))
 			{
 				if (this.repeatMode == BillRepeatMode.Forever)
@@ -117,7 +121,11 @@ namespace CraftingHysteresis
 					this.repeatCount = Mathf.Max(0, this.repeatCount - 1);
 				}
 				SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
-			}
+                if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
+                {
+                    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
+                }
+            }
 		}
 	}
 }
