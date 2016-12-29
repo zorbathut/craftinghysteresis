@@ -92,52 +92,7 @@ namespace CraftingHysteresis
 			{
 				Find.WindowStack.Add(new Dialog_BillConfig_Hysteresis(this, ((Thing)this.billStack.billGiver).Position));
 			}
-			if (widgetRow.ButtonText(this.repeatMode.GetLabel().PadRight(20), null, true, false))
-			{
-				BillRepeatModeUtility.MakeConfigFloatMenu(this);
-			}
-			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonPlus.GetValue(null), null))
-			{
-				if (this.repeatMode == BillRepeatMode.Forever)
-				{
-					this.repeatMode = BillRepeatMode.RepeatCount;
-					this.repeatCount = 1;
-				}
-				else if (this.repeatMode == BillRepeatMode.TargetCount)
-				{
-					this.targetCount += this.recipe.targetCountAdjustment;
-				}
-				else if (this.repeatMode == BillRepeatMode.RepeatCount)
-				{
-					this.repeatCount++;
-				}
-				SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
-                if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
-                {
-                    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
-                }
-            }
-			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonMinus.GetValue(null), null))
-			{
-				if (this.repeatMode == BillRepeatMode.Forever)
-				{
-					this.repeatMode = BillRepeatMode.RepeatCount;
-					this.repeatCount = 1;
-				}
-				else if (this.repeatMode == BillRepeatMode.TargetCount)
-				{
-					this.targetCount = Mathf.Max(0, this.targetCount - this.recipe.targetCountAdjustment);
-				}
-				else if (this.repeatMode == BillRepeatMode.RepeatCount)
-				{
-					this.repeatCount = Mathf.Max(0, this.repeatCount - 1);
-				}
-				SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
-                if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
-                {
-                    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
-                }
-            }
+            Bill_Production_Hysteresis.DrawStandardControls(this, widgetRow);
 		}
 	}
 }

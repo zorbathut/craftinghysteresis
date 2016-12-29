@@ -80,53 +80,60 @@ namespace CraftingHysteresis
 			{
 				Find.WindowStack.Add(new Dialog_BillConfig_Hysteresis(this, ((Thing)this.billStack.billGiver).Position));
 			}
-			if (widgetRow.ButtonText(this.repeatMode.GetLabel().PadRight(20), null, true, false))
-			{
-				BillRepeatModeUtility.MakeConfigFloatMenu(this);
-			}
-			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonPlus.GetValue(null), null))
-			{
-				if (this.repeatMode == BillRepeatMode.Forever)
-				{
-					this.repeatMode = BillRepeatMode.RepeatCount;
-					this.repeatCount = 1;
-				}
-				else if (this.repeatMode == BillRepeatMode.TargetCount)
-				{
-					this.targetCount += this.recipe.targetCountAdjustment;
-				}
-				else if (this.repeatMode == BillRepeatMode.RepeatCount)
-				{
-					this.repeatCount++;
-				}
-				SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
-                if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
+            DrawStandardControls(this, widgetRow);
+        }
+
+        public static void DrawStandardControls(Bill_Production bill, WidgetRow widgetRow)
+        {
+            if (widgetRow.ButtonText(bill.repeatMode.GetLabel().PadRight(20), null, true, false))
+            {
+                BillRepeatModeUtility.MakeConfigFloatMenu(bill);
+            }
+
+            int amount = Event.current.shift ? 5 : 1;
+            if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonPlus.GetValue(null), null))
+            {
+                if (bill.repeatMode == BillRepeatMode.Forever)
                 {
-                    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
+                    bill.repeatMode = BillRepeatMode.RepeatCount;
+                    bill.repeatCount = 1;
+                }
+                else if (bill.repeatMode == BillRepeatMode.TargetCount)
+                {
+                    bill.targetCount += bill.recipe.targetCountAdjustment * amount;
+                }
+                else if (bill.repeatMode == BillRepeatMode.RepeatCount)
+                {
+                    bill.repeatCount += amount;
+                }
+                SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
+                if (TutorSystem.TutorialMode && bill.repeatMode == BillRepeatMode.RepeatCount)
+                {
+                    TutorSystem.Notify_Event(bill.recipe.defName + "-RepeatCountSetTo-" + bill.repeatCount);
                 }
             }
-			if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonMinus.GetValue(null), null))
-			{
-				if (this.repeatMode == BillRepeatMode.Forever)
-				{
-					this.repeatMode = BillRepeatMode.RepeatCount;
-					this.repeatCount = 1;
-				}
-				else if (this.repeatMode == BillRepeatMode.TargetCount)
-				{
-					this.targetCount = Mathf.Max(0, this.targetCount - this.recipe.targetCountAdjustment);
-				}
-				else if (this.repeatMode == BillRepeatMode.RepeatCount)
-				{
-					this.repeatCount = Mathf.Max(0, this.repeatCount - 1);
-				}
-				SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
-                if (TutorSystem.TutorialMode && this.repeatMode == BillRepeatMode.RepeatCount)
+            if (widgetRow.ButtonIcon((Texture2D)CraftingHysteresis.Bootstrap.ButtonMinus.GetValue(null), null))
+            {
+                if (bill.repeatMode == BillRepeatMode.Forever)
                 {
-                    TutorSystem.Notify_Event(this.recipe.defName + "-RepeatCountSetTo-" + this.repeatCount);
+                    bill.repeatMode = BillRepeatMode.RepeatCount;
+                    bill.repeatCount = 1;
+                }
+                else if (bill.repeatMode == BillRepeatMode.TargetCount)
+                {
+                    bill.targetCount = Mathf.Max(0, bill.targetCount - bill.recipe.targetCountAdjustment * amount);
+                }
+                else if (bill.repeatMode == BillRepeatMode.RepeatCount)
+                {
+                    bill.repeatCount = Mathf.Max(0, bill.repeatCount - amount);
+                }
+                SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
+                if (TutorSystem.TutorialMode && bill.repeatMode == BillRepeatMode.RepeatCount)
+                {
+                    TutorSystem.Notify_Event(bill.recipe.defName + "-RepeatCountSetTo-" + bill.repeatCount);
                 }
             }
-		}
-	}
+        }
+    }
 }
 

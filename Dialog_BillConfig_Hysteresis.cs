@@ -18,10 +18,11 @@ namespace CraftingHysteresis
         {
             Rect rect = listing.GetRect(24f);
             rect.width = 42f;
+            int mult = Event.current.shift ? 10 : 1;
             if (Widgets.ButtonText(rect, "-" + 1, true, false, true))
             {
                 SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
-                val -= 1;
+                val -= 1 * mult;
                 if (val < min)
                 {
                     val = min;
@@ -31,7 +32,7 @@ namespace CraftingHysteresis
             if (Widgets.ButtonText(rect, "+" + 1, true, false, true))
             {
                 SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
-                val += 1;
+                val += 1 * mult;
                 if (val < min)
                 {
                     val = min;
@@ -41,7 +42,7 @@ namespace CraftingHysteresis
             if (Widgets.ButtonText(rect, "-" + 25, true, false, true))
             {
                 SoundDefOf.AmountDecrement.PlayOneShotOnCamera();
-                val -= 25;
+                val -= 25 * mult;
                 if (val < min)
                 {
                     val = min;
@@ -51,7 +52,7 @@ namespace CraftingHysteresis
             if (Widgets.ButtonText(rect, "+" + 25, true, false, true))
             {
                 SoundDefOf.AmountIncrement.PlayOneShotOnCamera();
-                val += 25;
+                val += 25 * mult;
                 if (val < min)
                 {
                     val = min;
